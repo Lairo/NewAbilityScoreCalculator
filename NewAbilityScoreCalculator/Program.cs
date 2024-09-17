@@ -1,20 +1,52 @@
-﻿namespace NewAbilityScoreCalculator
+﻿
+namespace NewAbilityScoreCalculator
 {
     internal class Program
     {
         static void Main()
         {
+            
+
+            AbilityScoreCalculator calculator = new();
+            while (true)
+            {
+                calculator.RollResult = ReadInt(calculator.RollResult, "Starting 4d6 roll");
+                calculator.DividedBy = ReadDouble(calculator.DividedBy, "Divide by");
+                calculator.AddAmount = ReadInt(calculator.AddAmount, "Add amount");
+                calculator.Minimum = ReadInt(calculator.Minimum, "Minimum");
+                calculator.CalculateAbilityScore();
+                Console.WriteLine("Calculated ability score: " + calculator.Score);
+                Console.WriteLine("Press Q to quit, any other key to continue");
+                char keyChar = Console.ReadKey(true).KeyChar;
+                if ((keyChar == 'Q') || (keyChar == 'q')) return;
+            }
+        }
 
 
-            int myInt = 10;
-            byte myByte = (byte)myInt;
-            double myDouble = myByte;
-            string myString = "false";
-            short myShort = (short)myInt;
-            char myChar = 'x';
-            myString = myString + myInt + myByte + myDouble + myShort + myChar;
+        static int ReadInt(int defaultValue, string prompt)
+        {
+            Console.Write(prompt + $" [{defaultValue}]:");
+            string? line = Console.ReadLine();
 
-            Console.WriteLine(myString.GetType());
+            if (int.TryParse(line, out int result))
+                return result;
+            else
+            {
+                Console.WriteLine($"\tusing default value [{defaultValue}]");
+                return defaultValue;
+            }
+        }
+        static double ReadDouble(double defaultValue, string prompt)
+        {
+            Console.Write(prompt + $" [{defaultValue}]:");
+            string? line = Console.ReadLine();
+
+            if (double.TryParse(line, out double result))            
+                return result;            
+            else {
+                Console.WriteLine($"\tusing default value [{defaultValue}]");
+                return defaultValue;
+            }
         }
     }
 }
