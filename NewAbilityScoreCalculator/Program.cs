@@ -2,9 +2,14 @@
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            Console.WriteLine("Hello, World!");
+
+
+            sbyte c = -125;
+            char b = 't';
+            Convert.ToByte("10111", 2);
+            Console.WriteLine($"{c} {b}");
         }
     }
 }
