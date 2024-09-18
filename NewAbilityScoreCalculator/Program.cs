@@ -5,7 +5,7 @@ namespace NewAbilityScoreCalculator
     {
         static void Main()
         {
-            
+
 
             AbilityScoreCalculator calculator = new();
             while (true)
@@ -21,15 +21,17 @@ namespace NewAbilityScoreCalculator
                 if ((keyChar == 'Q') || (keyChar == 'q')) return;
             }
         }
-
-
+                
         static int ReadInt(int defaultValue, string prompt)
         {
-            Console.Write(prompt + $" [{defaultValue}]:");
+            Console.Write(prompt + $" [{defaultValue}]: ");
             string? line = Console.ReadLine();
 
             if (int.TryParse(line, out int result))
+            {
+                Console.WriteLine($"\tusing New value [{result}]");
                 return result;
+            }
             else
             {
                 Console.WriteLine($"\tusing default value [{defaultValue}]");
@@ -38,12 +40,16 @@ namespace NewAbilityScoreCalculator
         }
         static double ReadDouble(double defaultValue, string prompt)
         {
-            Console.Write(prompt + $" [{defaultValue}]:");
+            Console.Write(prompt + $" [{defaultValue}]: ");
             string? line = Console.ReadLine();
 
-            if (double.TryParse(line, out double result))            
-                return result;            
-            else {
+            if (double.TryParse(line, out double result))
+            {
+                Console.WriteLine($"\tusing New value [{result}]");
+                return result;
+            }
+            else
+            {
                 Console.WriteLine($"\tusing default value [{defaultValue}]");
                 return defaultValue;
             }
